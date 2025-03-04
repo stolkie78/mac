@@ -1,0 +1,16 @@
+- name: Install multiple packages using Homebrew
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    brew_packages:
+      - lazygit
+      - htop
+      - jq
+
+  tasks:
+    - name: Install packages with Homebrew
+      homebrew:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ brew_packages }}"
